@@ -73,8 +73,8 @@ class Algorithme:
         self.listePossibilités = []
 
     def générerPossibilité(self, list):
-        for num in range(13):
-            for i in combinations(list, num+3):
+        for num in range(len(list)):
+            for i in combinations(list, num):
                 if self.soldeFinal(i) >= 0:
                     portefeuilleTemporaire = Portefeuille()
                     for element in i: 
@@ -110,10 +110,12 @@ def main():
     lecteur.creationBDD()
     algo = Algorithme()
     algo.générerPossibilité(lecteur.listeAction)
-    algo.préciserTop()
     tps4 = time.time()
     print(f'-------------------------------')
     print(f'Toutes les simulations ont été éffectuées en {(tps4 - tps3)} secondes')
     print(f'-------------------------------')
+    algo.préciserTop()
+
+
 
 main()
