@@ -24,13 +24,18 @@ class Portefeuille:
         for action in self.listeActions:
             self.valeurFinale += (action.valeur*(1+(action.bénéfice/100)))
             self.bénéfice += (action.valeur*(action.bénéfice/100))
-        
+
     def afficherPortefeuille(self):
         print(f" ------ portefeuille {self.id}-----------")
-        print(f"Nb Actions : {len(self.listeActions)} Achat initial : {self.achatTotal} Valeur Finale : {self.valeurFinale} Bénéfice : {self.bénéfice}")
+        print(f"Nb Actions : {len(self.listeActions)} ",
+              f"Achat initial : {self.achatTotal} ",
+              f"Valeur Finale : {self.valeurFinale} ",
+              f"Bénéfice : {self.bénéfice}")
         print("Nom, Valeur Initiale, Bénéfice sous 2 ans, Valeur finale ")
         for action in self.listeActions:
-            print(f"{action.name}, {action.valeur} €, {action.bénéfice} %, {action.valeur*(1+(action.bénéfice/100))} €")
+            print(f"{action.name}, {action.valeur} €,",
+                  f" {action.bénéfice} %, ",
+                  f"{action.valeur*(1+(action.bénéfice/100))} €")
 
 
 class Action:
@@ -41,10 +46,10 @@ class Action:
         self.bénéfice = bénéfice
 
     def printAction(self):
-            print(f"Nom : {self.name}")
-            print(f"Valeur : {self.valeur}")
-            print(f"Bénéfice sous 2 ans : {self.bénéfice}")
-            print("------------------------------------")
+        print(f"Nom : {self.name}")
+        print(f"Valeur : {self.valeur}")
+        print(f"Bénéfice sous 2 ans : {self.bénéfice}")
+        print("------------------------------------")
 
 
 class LecteurBDDCSV:
@@ -77,7 +82,7 @@ class Algorithme:
             for i in combinations(list, num):
                 if self.soldeFinal(i) >= 0:
                     portefeuilleTemporaire = Portefeuille()
-                    for element in i: 
+                    for element in i:
                         portefeuilleTemporaire.achatAction(element)
                     portefeuilleTemporaire.calculbénéfice()
                     self.listePossibilités.append(portefeuilleTemporaire)
@@ -111,6 +116,7 @@ class Algorithme:
                   f" {element.valeurFinale} Bénéfice : {element.bénéfice}")
             print("--------------------------")
 
+
 def main():
     tps3 = time.time()
     lecteur = LecteurBDDCSV()
@@ -118,9 +124,11 @@ def main():
     algo = Algorithme()
     algo.générerPossibilité(lecteur.listeAction)
     tps4 = time.time()
-    print(f'-------------------------------')
-    print(f'Toutes les simulations ont été éffectuées en {(tps4 - tps3)} secondes')
-    print(f'-------------------------------')
+    print('-------------------------------')
+    print("Toutes les simulations ont été éffectuées ",
+          f"en {(tps4 - tps3)} secondes")
+    print('-------------------------------')
     algo.préciserTop()
-    
+
+
 main()
