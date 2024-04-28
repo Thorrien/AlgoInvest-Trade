@@ -83,12 +83,16 @@ class Algorithme:
                     self.listePossibilités.append(portefeuilleTemporaire)
 
     def préciserTop(self):
-        self.listePossibilités.sort(key=lambda portefeuille: portefeuille.bénéfice, reverse=True)
+        self.listePossibilités.sort(
+            key=lambda portefeuille: portefeuille.bénéfice,
+            reverse=True)
         self.printPossibilité(0)
 
     def printPossibilité(self, index):
         print("--------------------------")
-        print(f"Le meilleur investissement est la simulation N° {self.listePossibilités[index].id} constitué des actions suivantes : ")
+        print("Le meilleur investissement est la simulation N° ",
+              f"{self.listePossibilités[index].id} constitué des ",
+              "actions suivantes : ")
         self.listePossibilités[index].afficherPortefeuille()
 
     def soldeFinal(self, listAction):
@@ -98,10 +102,13 @@ class Algorithme:
         return solde
 
     def printPossibilités(self):
-        self.listePossibilités.sort(key=lambda portefeuille: portefeuille.bénéfice)
+        self.listePossibilités.sort(
+            key=lambda portefeuille: portefeuille.bénéfice)
         for element in self.listePossibilités:
             print("--------------------------")
-            print(f"{element.id} : Nb Actions : {len(element.listeActions)} Achat initial : {element.achatTotal} Valeur Finale : {element.valeurFinale} Bénéfice : {element.bénéfice}")
+            print(f"{element.id} : Nb Actions : {len(element.listeActions)} ",
+                  f"Achat initial : {element.achatTotal} Valeur Finale :",
+                  f" {element.valeurFinale} Bénéfice : {element.bénéfice}")
             print("--------------------------")
 
 def main():
@@ -115,7 +122,5 @@ def main():
     print(f'Toutes les simulations ont été éffectuées en {(tps4 - tps3)} secondes')
     print(f'-------------------------------')
     algo.préciserTop()
-
-
-
+    
 main()
